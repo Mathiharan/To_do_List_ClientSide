@@ -1,10 +1,22 @@
 import { Component } from "react";
 import {
-    addTask,
     getTasks,
     updateTask,
     deleteTask,
 } from "../axios/service";
+import { connect } from "react-redux";
+import { addTask, postTask } from "..//redux/ActionCreators";
+
+const mapStateToProps = (state) => {
+    return {
+      tasks: state.tasks,
+    };
+  };
+
+  const mapDispatchToProps = (dispatch) => ({
+    postTask: (task) =>
+      dispatch(postTask(task)),
+  });
 
 class Tasks extends Component {
     state = { tasks: [], currentTask: "" };
@@ -67,4 +79,4 @@ class Tasks extends Component {
     };
 }
 
-export default Tasks;
+export default connect(mapStateToProps, mapDispatchToProps)(Tasks);

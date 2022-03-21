@@ -3,20 +3,20 @@ import * as ActionTypes from "./ActionTypes";
 export const TodoList = (
   state = {
     errMess: null,
-    todoList: []
+    tasks: []
   },
   action
 ) => {
   switch (action.type) {
     case ActionTypes.ADD_TODO:
-        state.todoList.push(action.payload);
+        state.tasks.push(action.payload);
         return {...state, errMess: null};
 
     case ActionTypes.DEL_TODO:
-        state.todoList = state.todoList.filter(
+        state.tasks = state.tasks.filter(
             (task) => task._id !== action.payload
         );
-        return {...state, errMess: action.payload, todoList: []};
+        return {...state, errMess: action.payload, tasks: []};
       
     default:
       return state;
